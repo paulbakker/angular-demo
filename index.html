@@ -1,0 +1,33 @@
+<html ng-app="TodoApp">
+<head>
+    <script src="bower_components/angular/angular.js" type="application/javascript"></script>
+    <script src="js/todo.js" type="application/javascript"></script>
+</head>
+
+<body ng-controller="TodoCtrl as todo">
+
+    <input type="text" placeholder="New todo" ng-model="todo.newTodo">
+
+    <button ng-click="todo.add(todo.newTodo)">Add</button>
+
+    <table>
+        <tr>
+            <th>Completed</th>
+            <th>Description</th>
+        </tr>
+        <tr ng-repeat="item in todo.items">
+            <td>
+                <input type="checkbox" value="true" ng-model="item.completed">
+            </td>
+            <td>
+                <div ng-switch="item.completed">
+                    <span ng-switch-when="false">{{item.text}}</span>
+                    <span ng-switch-when="true" style="text-decoration: line-through">{{item.text}}</span>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
